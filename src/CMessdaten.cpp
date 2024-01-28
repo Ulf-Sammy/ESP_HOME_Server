@@ -69,7 +69,7 @@ void Messdaten::Begin(byte Nr, Log_Data_File *SD)
     Sensor_Power.setCalibration_32V_1A();
 }
 
-void Messdaten::ESP_Log_Data(tm Zeit, u_int8_t DB)
+void Messdaten::ESP_Log_Data(tm Zeit)
 {
   Tmp_File = pSD->speicher_ESPDataFile(TextESPDataFile(Zeit));
 
@@ -83,7 +83,7 @@ void Messdaten::ESP_Log_Data(tm Zeit, u_int8_t DB)
         current_mA = Sensor_Power.getCurrent_mA();
         power_mW = Sensor_Power.getPower_mW();
     }    
-    Tmp_File.printf(" %2d:%02d ; %8.2f mA; %8.2f mW ; %3d mdB",Zeit.tm_hour, Zeit.tm_min, current_mA,power_mW, DB);
+    Tmp_File.printf(" %2d:%02d ; %8.2f mA; %8.2f mW ; %3d mdB",Zeit.tm_hour, Zeit.tm_min, current_mA,power_mW,Feldstaerke_dBm);
   }
 }
 
@@ -173,11 +173,10 @@ if (RegelungTemper)
     }  
     Heizen(Zeit,Temp_ist,OnTemp_Heizer,OffTemp_Heizer);
   }
-  if(Sensor_Da[Power])
+  if(Sensor_Da[Power]) // Strom messsen
   {
-      static float ImA;
-      ImA = Sensor_Power.getCurrent_mA(); 
-      if ( ImA > MaxCurrent); MaxCurrent = ImA;
+      current_mA = Sensor_Power.getCurrent_mA(); 
+      if ( current_mA > MaxCurrent); MaxCurrent = current_mA;
    }
 }
 
@@ -253,10 +252,12 @@ void Messdaten::WerteSichern(bool start, tm Zeit, float DB)
     {
       if (DB != 0)
       {
+        Feldstaerke_dBm = DB;
         if (DB > MaxFeldstaerke) MaxFeldstaerke = DB;
         if (DB < MinFeldstaerke) MinFeldstaerke = DB;
       }
     }
+    ESP_Log_Data(Zeit);
 }
 
 void Messdaten::ResetMinMax()
@@ -733,8 +734,11 @@ String Messdaten::replaceVariable(const String &var)
   if (var == "ANZ")        return(String(ANZAHL_Dallas));
   if (var == "POWERVOLT")  return(DebugVolt());
   if (var == "POWERSTRO")  return(DebugStrom());
-  //if (var == "MINMAXSTRO") return(String(MinWert_f[Strom]) + " - " + String(MaxCurrent));
+  if (var == "STROMINMA") return(String(current_mA)+" mA ");
+  if (var == "MINMAXSTRO") return(String(MaxCurrent)+" mA ");
   if (var == "POWERLEIS")   return(DebugLeistung());
+  if (var == "WIFIRSSI")   return(String(Feldstaerke_dBm)+" dBm");
+  if (var == "WIFIMAXMINRSSI")   return(String(MinFeldstaerke)+" dBm .... "+ String(MaxFeldstaerke)+" dBm");
 
   if (var == "CLASS_BIT1")  return( RegelungTemper ? "button_I" : "button_O");
   if (var == "CLASS_BIT2")  return( RegelungWasser ? "button_I" : "button_O");

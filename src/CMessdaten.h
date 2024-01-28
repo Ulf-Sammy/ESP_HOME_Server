@@ -56,6 +56,7 @@ class Messdaten
     float loadvoltage = 0;
     float power_mW = 0;
     float MaxCurrent = 0;
+    float Feldstaerke_dBm = 0;
     float MaxFeldstaerke = 0;
     float MinFeldstaerke = 0;
     float OnTemp_Heizer = 0.00;
@@ -89,7 +90,7 @@ class Messdaten
   public:
     Messdaten();
     void Begin(byte Nr, Log_Data_File *pSD);
-    void ESP_Log_Data(tm Zeit,  u_int8_t DB);
+    void ESP_Log_Data(tm Zeit);
     void SetneuerTag(tm Zeit);
     void Messen();
     void Regelung(tm Zeit); //Heizung und Pumpe

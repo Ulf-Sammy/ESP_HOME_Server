@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-type"content="text/html; charset=utf-8">
   <link rel="stylesheet" type="text/css" href="/espstyle.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
 </head>
 
 <body>
@@ -48,18 +47,13 @@
   </tr>
   <tr>
     <td>Wifi Stärke            </td>
-    <td> %WIFIRSSI% dBm</td>
+    <td> %WIFIRSSI% </td>
     <td> %WIFIMAXMINRSSI% </td>
   </tr>
   <tr>
     <td>Wifi Abbrüche          </td>
-    <td> %WIFIERROR% </td>
-     <td></td>
-    </tr>
-  <tr>
-    <td>Wifi Abbruchgrund      </td>
-    <td> %WIFIERR_GR% </td>    
-    <td>    </td>
+    <td> %WIFIERROR%  </td>
+    <td> %WIFIERR_GR% </td>
   </tr>
   <tr>
     <td>ESP IP Adresse         </td>
@@ -161,22 +155,25 @@
     <td> on / off    </td>
     <td style="text-align: center;"><a href="/info?Bit=3"  class="%CLASS_BIT3%";>%BIT3_TEXT%</a> </td>
   </tr>
+ <tr>
+    <td> Log Datei Downladen </td>
+    <td><button> <a href="/download?Datei=1"> actuelle Logdatei      </a></button></td>
+    <td><button> <a href="/download?Datei=2"> gestern  Logdatei      </a></button></td>
+  </tr> 
+  <tr>
+    <td> Debug Datei Downladen </td>
+    <td>  <button> <a href="/download?Datei=4"> Debugdatei Regelung    </a></button></td>
+    <td>  <button> <a href="/download?Datei=5"> Debugdatei Analog Mess </a></button></td>
+  </tr>
+  <tr>
+    <td> Log ESP Datei Downladen </td>
+    <td>  <button> <a href="/download?Datei=6"> actuelle Logdatei zu ESP32 </a></button></td>
+    <td>  <button> <a href="/download?Datei=7"> gestern Logdatei zu ESP32 </a></button></td>
+  </tr>
   </table>  
-  <button> <a href="/info?Bit=10"> Save Mem </a></button>
-  <button> <a href="/info?Bit=11"> Load Mem </a></button>
-  <button> <a href="/info?Bit=12"> Test it </a></button>
     <br>
-    <button> <a href="/download?Datei=1"> actuelle Logdatei      </a></button>
-    <button> <a href="/download?Datei=2"> gestern  Logdatei      </a></button>
     <br>
-    <button> <a href="/download?Datei=3"> letzte   Memdatei      </a></button>
     <br>
-    <button> <a href="/download?Datei=4"> Debugdatei Regelung    </a></button>
-    <button> <a href="/download?Datei=5"> Debugdatei Analog Mess </a></button>
-    <button> <a href="/download?Datei=6"> actuelle Logdatei zu ESP32 </a></button>
-    <button> <a href="/download?Datei=7"> gestern Logdatei zu ESP32 </a></button>
-  <br>
-  <br>
-  <br>
+   <br>
    </body>
   </html>

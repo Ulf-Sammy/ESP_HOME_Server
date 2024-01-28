@@ -122,7 +122,7 @@ void setup(void) {
   configTime(0, 0, NTP_SERVER);
   setenv("TZ", TZ_INFO, 1);
 
-  AsyncElegantOTA.begin(&server); 
+ //  AsyncElegantOTA.begin(&server); 
   server.begin();
   
   server.on("/espstyle.css", HTTP_GET, [](AsyncWebServerRequest* request)  
@@ -136,12 +136,15 @@ void setup(void) {
   });
   server.on("/favicon.ico", HTTP_GET, [](AsyncWebServerRequest* request)  
   { 
+     Serial.println("on Server favicon.ico ");
+
        switch (ESPDevise)
        {
        case Glaspalast:
         request->send(SPIFFS, "/favicon(1).ico");
         break;
        case Lokschuppen:
+         Serial.println("Send favicon Lookschuppen ");
         request->send(SPIFFS, "/favicon(2).ico");
         break;
        
@@ -200,7 +203,6 @@ void loop(void) {
   {
     Daten.Regelung(Time);
     Daten.WerteSichern(false, Time, WiFi.RSSI());
-    Daten.ESP_Log_Data(Time, WiFi.RSSI());
     if((Time.tm_hour== 0)&&(Time.tm_min== 0))// Neuer Tag
     {
       Daten.SetneuerTag(Time);
