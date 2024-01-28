@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Im %TITELNAME% - Info</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type"content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="/espstyle.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+</head>
+
+<body>
+
+  <ul>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="/boden/">Boden News</a></li>
+    <li><a href="/luft/"> Luft News</a></li>
+    <li><a href="/out/"> Schalten</a></li>
+    <li><a href="/info/">Info</a></li>
+  </ul>
+<br><br>
+<h1> %TITELDATUM% </h1>
+<h2>- Info </h2>
+<table>
+  <tr>
+    <th>Beschreibung           </th>
+    <th> Wert</th>   
+    <th> Bemerkung   </th>
+  </tr>
+  <tr>
+    <td>Wifi Namen             </td>
+    <td> %WIFINAME% </td>
+    <td>  </td>
+  </tr>
+  <tr>
+    <td>Wifi Mac Adress          </td>
+    <td> %WIFIMAC% </td>
+    <td>  </td>
+  </tr>
+  <tr>
+    <td>Wifi Host Namen        </td>
+    <td> %WIFIHOST% </td>
+    <td>  </td>
+    </tr>
+  <tr>
+    <td>Wifi Kanale            </td>
+    <td> %WIFIKANAL%</td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td>Wifi Stärke            </td>
+    <td> %WIFIRSSI% dBm</td>
+    <td> %WIFIMAXMINRSSI% </td>
+  </tr>
+  <tr>
+    <td>Wifi Abbrüche          </td>
+    <td> %WIFIERROR% </td>
+     <td></td>
+    </tr>
+  <tr>
+    <td>Wifi Abbruchgrund      </td>
+    <td> %WIFIERR_GR% </td>    
+    <td>    </td>
+  </tr>
+  <tr>
+    <td>ESP IP Adresse         </td>
+    <td> %ESPIP% </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>  SPIFFS Files List:   </td>
+    <td>   %SPIFFSDIR%  </td>
+    <td>     </td>
+  </tr>
+  <tr>
+    <td>NTP Server (Zeit)      </td>
+    <td> %NTPTIME%</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>I2C Devices            </td>
+    <td> %I2CDEV% </td>
+    <td>%I2CANZ%</td>
+  </tr>
+  <tr>
+    <td>Störung Sensor innen   </td>
+    <td> %SBME% </td>
+    <td> BME280  = [ox76]</td>
+  </tr>
+  <tr>
+    <td>Störung Sensor aussen  </td>
+    <td> %SAHTAU%</td>
+    <td> AHT10 Nr.1 = [ox38]</td>
+  </tr>
+  <tr>
+    <td>Störung Sensor innen  </td>
+    <td> %SAHTIN%</td>
+    <td> AHT10 Nr.2 = [ox39]</td>
+  </tr>
+  <tr>
+    <td>Störung Sensor Licht   </td>
+    <td> %SNLI% </td>
+    <td></td>
+  </tr> 
+  <tr>
+    <td>Störung Sensor Dallas  </td>
+    <td> %SNDALLAS% </td>
+    <td> Anzahl Senosoren %ANZ%</td>
+  </tr> 
+  <tr>
+    <td>Störung Sensor Analog  </td>
+    <td> %SNANALOGT% </td>
+    <td> Analog Eingang testen</td>
+  </tr> 
+  <tr><td>Störung Power sensor   </td>
+    <td> %SNPOW% </td>
+    <td> INA219 = [ox40]</td>
+  </tr>
+  <tr>
+    <td>Messung Power Volt     </td>
+    <td> %POWERVOLT% </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Messung Power Strom    </td>
+    <td> %POWERSTRO% </td>
+    <td>%MINMAXSTRO%</td>
+  </tr>
+  <tr>
+    <td>Messung Power Leistung </td>
+    <td> %POWERLEIS% </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Zeit die Heitzung lief  </td>
+    <td>%HEITZDAUER%</td>
+    <td>bestimmen der Leistung</td>
+  </tr>
+  <tr>
+    <td>Störung SD - Card      </td>
+    <td>%SD_ERROR%</td>
+    <td></td> 
+  </tr>
+  <tr><td>SD - Card   Type         </td><td> %SD_TYPE% </td>    <td></td>  </tr>
+  <tr><td>SD - Card Grösse         </td><td> %SD_GROSS%</td>    <td></td>  </tr>
+  <tr><td>SD - Card Grösse gesamt  </td><td> %SD_TOTAL_BY% </td>   <td></td>  </tr>
+  <tr><td>SD - Card Grösse benutzt </td><td> %SD_USED_BY% </td>   <td></td>  </tr>
+  <tr><td>SD - Card File Mem-File  </td><td> %ERROR_MEMFILE% </td>   <td></td>  </tr>
+  <tr><td>SD - Card File Log-File  </td><td> %ERROR_LOGFILE% </td>   <td></td>  </tr>
+  <tr>
+    <td> Regelung Termperatur</td>
+    <td> on Temperatur %ON_TEMP%  <br> off Temperatur %OFF_TEMP% </td>
+    <td style="text-align: center;"><a href="/info?Bit=1"  class="%CLASS_BIT1%";>%BIT1_TEXT%</a> </td>
+  </tr>
+  <tr>
+    <td> Regelung Wässerung</td>
+    <td> on / off    </td>
+    <td style="text-align: center;"><a href="/info?Bit=2"  class="%CLASS_BIT2%";>%BIT2_TEXT%</a> </td>
+  </tr>
+  <tr>
+    <td> Teste Analog Messen</td>
+    <td> on / off    </td>
+    <td style="text-align: center;"><a href="/info?Bit=3"  class="%CLASS_BIT3%";>%BIT3_TEXT%</a> </td>
+  </tr>
+  </table>  
+  <button> <a href="/info?Bit=10"> Save Mem </a></button>
+  <button> <a href="/info?Bit=11"> Load Mem </a></button>
+  <button> <a href="/info?Bit=12"> Test it </a></button>
+    <br>
+    <button> <a href="/download?Datei=1"> actuelle Logdatei      </a></button>
+    <button> <a href="/download?Datei=2"> gestern  Logdatei      </a></button>
+    <br>
+    <button> <a href="/download?Datei=3"> letzte   Memdatei      </a></button>
+    <br>
+    <button> <a href="/download?Datei=4"> Debugdatei Regelung    </a></button>
+    <button> <a href="/download?Datei=5"> Debugdatei Analog Mess </a></button>
+    <button> <a href="/download?Datei=6"> actuelle Logdatei zu ESP32 </a></button>
+    <button> <a href="/download?Datei=7"> gestern Logdatei zu ESP32 </a></button>
+  <br>
+  <br>
+  <br>
+   </body>
+  </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Im %TITELNAME% - Schalten</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type"content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="/espstyle.css">
+</head>
+
+<body>
+  <ul>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="/boden/">Boden News</a></li>
+    <li><a href="/luft/"> Luft News</a></li>
+    <li><a href="/out/"> Schalten</a></li>
+    <li><a href="/info/">Info</a></li>
+  </ul>
+  <br>
+  <br>
+  <h1> %TITELDATUM% </h1>
+  <h2>- Relais schalten</h2>
+  <table>
+    <tr >
+      <th style="text-align: center;">Heizung     </th>
+      <th style="text-align: center;">Pumpe Wasser</th>
+      <th style="text-align: center;">Licht No.1  </th>
+      <th style="text-align: center;">Licht No.2  </th>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/out?SW=1"  class="%CLASS_RELAIS1%";>%RELAIS1_TEXT%</a> </td>
+      <td style="text-align: center;"><a href="/out?SW=2"  class="%CLASS_RELAIS2%";>%RELAIS2_TEXT%</a> </td>
+      <td style="text-align: center;"><a href="/out?SW=3"  class="%CLASS_RELAIS3%";>%RELAIS3_TEXT%</a> </td>
+      <td style="text-align: center;"><a href="/out?SW=4"  class="%CLASS_RELAIS4%";>%RELAIS4_TEXT%</a> </td>
+    </tr>
+  <table>
+  <h2>- Messungen</h2>
+<table>
+  <tr><th>Messung</th><th> Actuell</th><th>  Min   </th> <th>  Max   </th></tr>
+  <tr><td>Aussen Lufttemperatur</td>    <td> %AU1_TEMP_WERT% </td> <td> %AU1_TEMP_MIN% </td> <td> %AU1_TEMP_MAX% </td></tr>
+  <tr><td>Innen Lufttemperatur No1</td> <td> %IN1_TEMP_WERT% </td> <td> %IN1_TEMP_MIN% </td> <td> %IN1_TEMP_MAX%</td></tr>
+  <tr><td>Innen Lufttemperatur No2</td> <td> %IN2_TEMP_WERT% </td> <td> %IN2_TEMP_MIN% </td> <td> %IN2_TEMP_MAX%</td></tr>
+  <tr><td>Bodentemperatur No1</td>      <td> %BO1_TEMP_WERT% </td> <td> %BO1_TEMP_MIN% </td> <td> %BO1_TEMP_MAX%</td></tr>
+  <tr><td>Bodentemperatur No2</td>      <td> %BO2_TEMP_WERT% </td> <td> %BO2_TEMP_MIN% </td> <td> %BO2_TEMP_MAX%</td></tr>
+  <tr><td>Bodentemperatur No3</td>      <td> %BO3_TEMP_WERT% </td> <td> %BO3_TEMP_MIN% </td> <td> %BO3_TEMP_MAX%</td></tr>
+  <tr><td>Bodentemperatur No4</td>      <td> %BO4_TEMP_WERT% </td> <td> %BO4_TEMP_MIN% </td> <td> %BO4_TEMP_MAX%</td></tr>
+  <tr><td>Aussen Luftfeuchte</td>       <td> %AU1_FEUT_WERT% </td> <td> %AU1_FEUT_MIN% </td> <td> %AU1_FEUT_MAX%</td></tr>
+  <tr><td>Innen Luftfeuchte No1</td>    <td> %IN1_FEUT_WERT% </td> <td> %IN1_FEUT_MIN% </td> <td> %IN1_FEUT_MAX%</td></tr>
+  <tr><td>Innen Luftfeuchte No2</td>    <td> %IN2_FEUT_WERT% </td> <td> %IN2_FEUT_MIN% </td> <td> %IN2_FEUT_MAX%</td></tr>
+  <tr><td>Bodenfeuche No1 </td>         <td> %BO1_FEUT_WERT% </td> <td> %BO1_FEUT_MIN% </td> <td> %BO1_FEUT_MAX%</td></tr>
+  <tr><td>Bodenfeuche No2</td>          <td> %BO2_FEUT_WERT% </td> <td> %BO2_FEUT_MIN% </td> <td> %BO2_FEUT_MAX%</td></tr>
+  <tr><td>Bodenfeuche No3 </td>         <td> %BO3_FEUT_WERT% </td> <td> %BO3_FEUT_MIN% </td> <td> %BO3_FEUT_MAX%</td></tr>
+  <tr><td>Bodenfeuche No4</td>          <td> %BO4_FEUT_WERT% </td> <td> %BO4_FEUT_MIN% </td> <td> %BO4_FEUT_MAX%</td></tr>
+  <tr><td>LuftDruck</td>                <td> %LU_DRUK_WERT% </td>  <td> %LU_DRUK_MIN% </td>  <td> %LU_DRUK_MAX% </td></tr>
+</table>
+<br>
+<br>
+</body>
+</html>

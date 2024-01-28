@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Im %TITELNAME% - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type"content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="/espstyle.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+  <!--<script src='Chart.js'> </script>-->
+</head>
+
+<body>
+  <ul>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="/boden/">Boden News</a></li>
+    <li><a href="/luft/"> Luft News</a></li>
+    <li><a href="/out/"> Schalten</a></li>
+    <li><a href="/info/">Info</a></li>
+  </ul>
+  <h1> %TITELDATUM% </h1>
+  <br><br>
+  <p> %ICON_1% %ICON_2% %ICON_3% </p> 
+  <h2>- Temperatur Messungen</h2>
+  <h3>    </h3>
+  <table>
+    <tr>      <th> Ort  </th>    <th> Act. Temperatur</th>      <th> Min Temperatur</th>      <th> Max Temperatur</th>   <th> Act. Feuchte </th>    <th> Min Feuchte</th>       <th> Max Feuchte</th>    </tr>
+    <tr>      <td>Innen </td>    <td>%IN1_TEMP_WERT% </td>     <td>%IN1_TEMP_MIN% </td>     <td>%IN1_TEMP_MAX% </td>  <td>%IN1_FEUT_WERT% </td>  <td>%IN1_FEUT_MIN% </td>   <td>%IN1_FEUT_MAX% </td>   </tr>
+    <tr>      <td>Aussen </td>   <td>%AU1_TEMP_WERT% </td>     <td>%AU1_TEMP_MIN% </td>     <td>%AU1_TEMP_MAX% </td>  <td>%AU1_FEUT_WERT% </td>  <td>%AU1_FEUT_MIN% </td>   <td>%AU1_FEUT_MAX% </td>   </tr>
+    <tr>      <td>Boden </td>    <td>%BO1_TEMP_WERT% </td>     <td>%BO1_TEMP_MIN% </td>     <td>%BO1_TEMP_MAX% </td>  <td>%BO1_FEUT_WERT% </td>  <td>%BO1_FEUT_MIN% </td>   <td>%BO1_FEUT_MAX% </td>   </tr>
+  </table>
+  <h2>- Temperatur Messungen</h2>
+    <canvas id="ChartTemp" class="kurve"></canvas>
+  <h2>- Feuchte Messungen</h2>
+    <canvas id="ChartFeut" class="kurve"></canvas>
+    <br><br><br>
+  </body>
+</html>
+
+<script>
+ const KurveLuftInTemp =  "#ff0000";
+ const KurveLuftIn2Temp = "#ee6969";
+ const KurveLuftAuTemp  = "#0026ff";
+ const KurveBoden1Temp =  "#8e4204";
+ const KurveBoden2Temp = "#c96009";
+ const KurveBoden3Temp =  "#f8bd1c";
+ const KurveLuftInFeuch = "#ff0000";
+ const KurveLuftIn2Feuch = "#ee6969";
+ const KurveLuftAuFeuch = "#0026ff";
+ const KurveBoden1Feuch = "#55056e";
+ const KurveBoden2Feuch = "#8e09b6";
+ const KurveBoden3Feuch = "#b12dda";
+ const KurveLuftdruck = "#0a4ecc";
+ const KurveStrom = "#cb4fa6";
+
+
+  
+  const xValues  = %X_ARRAY%  
+  const yAu1Feuch = %AU1_FEUT_ARRAY% 
+  const yIn1Feuch = %IN1_FEUT_ARRAY%
+  const yBo1Feuch = %BO1_FEUT_ARRAY%
+  const yAu1Temp  = %AU1_TEMP_ARRAY%
+  const yIn1Temp  = %IN1_TEMP_ARRAY%
+  const yBo1Temp  = %BO1_TEMP_ARRAY%
+
+  new Chart("ChartTemp", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [
+        {
+          label: 'Aussen Temperatur',
+          data: yAu1Temp,
+          pointRadius: 2,
+          borderColor: KurveLuftAuTemp,
+          fill: false
+        },
+        {
+          label: 'Innen Temperatur',
+          data: yIn1Temp,
+          pointRadius: 2,
+          borderColor: KurveLuftInTemp,
+          fill: false
+        },
+        {
+          label: 'Boden Temperatur',
+          data: yBo1Temp,
+          pointRadius: 2,
+          borderColor: KurveBoden1Temp,
+          fill: false
+        }]
+    },
+    options: {
+      legend: { display: true },
+      scales: { yAxes: [{ ticks: { min: -5, max: 30 } }] }
+    }
+  });
+  new Chart("ChartFeut", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [
+        {
+          label: 'Aussen Feuchte',
+          data: yAu1Feuch,
+          pointRadius: 2,
+          borderColor: KurveLuftAuFeuch,
+          fill: false
+        },
+        {
+          label: 'Innen Feuchte',
+          data: yIn1Feuch,
+          pointRadius: 2,
+          borderColor: KurveLuftInFeuch,
+          fill: false
+        },
+        {
+          label: 'Boden Feuchte',
+          data: yBo1Feuch,
+          pointRadius: 2,
+          borderColor: KurveBoden1Feuch,
+          fill: false
+        }]
+    },
+    options: {
+      legend: { display: true },
+      scales: { yAxes: [{ ticks: { min: 0, max: 100 } }] }
+    }
+  });
+</script>

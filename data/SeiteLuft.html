@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Im %TITELNAME% - Luft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type"content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="/espstyle.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+</head>
+
+<body>
+
+  <ul>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="/boden/">Boden News</a></li>
+    <li><a href="/luft/"> Luft News</a></li>
+    <li><a href="/out/"> Schalten</a></li>
+    <li><a href="/info/">Info</a></li>
+  </ul>
+  <h1> %TITELDATUM% </h1>
+  <br><br>
+  <h2>- Lufttemperatur Messungen</h2>
+  <canvas id="ChartTemp" class="kurve"></canvas>
+  <h2>- Luftfeuchte Messungen</h2>
+  <canvas id="ChartFeuch" class="kurve"></canvas>
+  <h2>- Luftdruck Messungen</h2>
+  <canvas id="ChartDruck" class="kurve"></canvas>
+  <br>
+  <br>
+  <br>
+</body>
+
+<script>
+  const KurveLuftInTemp =  "#ff0000";
+ const KurveLuftIn2Temp = "#ee6969";
+ const KurveLuftAuTemp  = "#0026ff";
+ const KurveBoden1Temp =  "#8e4204";
+ const KurveBoden2Temp = "#c96009";
+ const KurveBoden3Temp =  "#f8bd1c";
+ const KurveLuftInFeuch = "#ff0000";
+ const KurveLuftIn2Feuch = "#ee6969";
+ const KurveLuftAuFeuch = "#0026ff";
+ const KurveBoden1Feuch = "#55056e";
+ const KurveBoden2Feuch = "#8e09b6";
+ const KurveBoden3Feuch = "#b12dda";
+ const KurveLuftdruck = "#cc0ab2";
+ const KurveRelais=   " #8a8484";
+
+  const xValues  = %X_ARRAY%  
+  const yLuDruk   = %LU_DRUK_ARRAY%
+  const yAuFeuch  = %AU1_FEUT_ARRAY% 
+  const yIn1Feuch = %IN1_FEUT_ARRAY%
+  const yIn2Feuch = %IN2_FEUT_ARRAY%
+  const yAuTemp   = %AU1_TEMP_ARRAY%
+  const yIn1Temp  = %IN1_TEMP_ARRAY%
+  const yIn2Temp  = %IN2_TEMP_ARRAY%
+  const yRelais1 = %RELAIS1_ARRAY%
+  
+  new Chart("ChartTemp", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [
+        {
+          label: 'Aussen Temperatur',
+          data: yAuTemp,
+          pointRadius: 1,
+          borderColor: KurveLuftAuTemp,
+          fill: false
+        },
+        {
+          label: 'Innen Temperatur No.1',
+          data: yIn1Temp,
+          pointRadius: 1,
+          borderColor: KurveLuftInTemp,
+          fill: false
+        },
+        {
+          label: 'Innen Temperatur No.2',
+          data: yIn2Temp,
+          pointRadius: 1,
+          borderColor: KurveLuftIn2Temp,
+          fill: false
+        },
+        {
+          label: 'Heizen',
+          data: yRelais1,
+          pointRadius: 0,
+          borderColor: KurveRelais,
+          fill: false
+        }]
+        },
+            options: {
+            legend: { display: true },
+            scales: { yAxes: [{ ticks: { min: -5, max: 30 } }] }
+        }
+    });
+    new Chart("ChartFeuch", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [
+        {
+          label: 'Aussen Feuchte',
+          data: yAuFeuch,
+          pointRadius: 1,
+          borderColor: KurveLuftAuFeuch,
+          fill: false
+        },
+        {
+          label: 'Innen Feuchte No.1',
+          data: yIn1Feuch,
+          pointRadius: 1,
+          borderColor: KurveLuftInFeuch,
+          fill: false
+        },
+        {
+          label: 'Innen Feuchte No.2',
+          data: yIn2Feuch,
+          pointRadius: 1,
+          borderColor: KurveLuftIn2Feuch,
+          fill: false
+        }]
+        },
+            options: {
+            legend: { display: true },
+            scales: { yAxes: [{ ticks: { min: 0, max: 100 } }] }
+        }
+    });
+
+new Chart("ChartDruck", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [
+        {
+          label: 'Luftdruck',
+          data: yLuDruk,
+          pointRadius: 1,
+          borderColor: KurveLuftdruck,
+          fill: false
+        }]
+    },
+    options: {
+      legend: { display: true },
+    }
+  });
+</script>
+</html>
