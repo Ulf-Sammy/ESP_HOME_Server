@@ -837,16 +837,16 @@ String Messdaten::TextArray(WerteMessen_f type)
 {
   Text = "[";
   if (AnzeigevollKurve) EndPunktKurve = MaxMessungen+1;
-  else  EndPunktKurve = EndZeitKurve;
+  else  EndPunktKurve = EndZeitKurve+1;
     for(int i =0; i < EndPunktKurve; i++)
     {
         Text += String(ZeitWerte_f[type][i]);
         if (i== (EndPunktKurve-1))           
         {
-           Text +=  "];";
-           //","+ String(ZeitWerte_f[type][0])+"];";
-           }
-        else                                { Text += "," ;} 
+            if (AnzeigevollKurve) Text +=","+ String(ZeitWerte_f[type][0])+"];";
+            else  Text +=  "];";
+        }
+        else  { Text += "," ;} 
     }
     return Text;
 }
@@ -854,12 +854,16 @@ String Messdaten::TextArray(WerteMessen_b type)
 {
   Text = "[";
   if (AnzeigevollKurve) EndPunktKurve = MaxMessungen+1;
-  else  EndPunktKurve = EndZeitKurve;
+  else  EndPunktKurve = EndZeitKurve+1;
     for(int i =0; i < EndPunktKurve; i++)
     {
         Text += String(ZeitWerte_b[type][i]);
-        if (i== (EndPunktKurve-1))           { Text += ","+ String(ZeitWerte_b[type][0])+"];";}
-        else                                { Text += "," ;} 
+        if (i== (EndPunktKurve-1))         
+        {
+          if (AnzeigevollKurve) Text +=","+ String(ZeitWerte_b[type][0])+"];";
+          else            Text +="];";
+        }
+        else                               { Text += "," ;} 
     }
     return Text;
 }
@@ -867,12 +871,16 @@ String Messdaten::TextArray(WerteMessen_d type, float von, float bis)
 {
     Text = "[";
     if (AnzeigevollKurve) EndPunktKurve = MaxMessungen+1;
-    else  EndPunktKurve = EndZeitKurve;
+    else  EndPunktKurve = EndZeitKurve+1;
 
-    for(int i =0; i < MaxMessungen; i++)
+    for(int i =0; i < EndPunktKurve; i++)
     {
         Text += String(von + ZeitWerte_d[type][i]*(bis-von));
-        if (i== (MaxMessungen-1))           { Text +=  ","+ String(von + ZeitWerte_d[type][0]*(bis-von))+"];";}
+        if (i== (EndPunktKurve-1))           
+        {
+            if (AnzeigevollKurve) Text +=  ","+ String(von + ZeitWerte_d[type][0]*(bis-von))+"];";
+            else Text += "];";
+        }
         else                                { Text += "," ;} 
     }
     return Text;
