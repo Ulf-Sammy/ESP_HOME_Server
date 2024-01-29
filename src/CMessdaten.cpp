@@ -83,7 +83,7 @@ void Messdaten::ESP_Log_Data(tm Zeit)
         current_mA = Sensor_Power.getCurrent_mA();
         power_mW = Sensor_Power.getPower_mW();
     }    
-    Tmp_File.printf(" %2d:%02d ; %8.2f mA; %8.2f mW ; %3d mdB",Zeit.tm_hour, Zeit.tm_min, current_mA,power_mW,Feldstaerke_dBm);
+    Tmp_File.printf(" %2d:%02d ; %8.2f mA; %8.2f mW ; %8.2f mdB  \n",Zeit.tm_hour, Zeit.tm_min, current_mA,power_mW,Feldstaerke_dBm);
   }
 }
 
@@ -153,7 +153,7 @@ void Messdaten::Messen()
           Tmp_File = pSD->speicher_DebugFile(2);
           if (Tmp_File)
           {
-            Tmp_File.printf("- No.1 = %3d %; %5d |- No.2 = %3d %; %5d |- No.3 = %3d %; %5d |- No.4 = %3d %; %5d   ", ActuellerWert_b[Bo1Feu],AnalogWertA, ActuellerWert_b[Bo2Feu],AnalogWertB, ActuellerWert_b[Bo3Feu],AnalogWertC, ActuellerWert_b[Bo4Feu],AnalogWertD );
+            Tmp_File.printf("- No.1 = %3d %; %5d ;|- No.2 = %3d %; %5d ;|- No.3 = %3d %; %5d ;|- No.4 = %3d %; %5d ;|\n ", ActuellerWert_b[Bo1Feu],AnalogWertA, ActuellerWert_b[Bo2Feu],AnalogWertB, ActuellerWert_b[Bo3Feu],AnalogWertC, ActuellerWert_b[Bo4Feu],AnalogWertD );
             Tmp_File.close();
           }
           

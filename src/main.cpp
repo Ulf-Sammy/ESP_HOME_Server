@@ -122,7 +122,7 @@ void setup(void) {
   configTime(0, 0, NTP_SERVER);
   setenv("TZ", TZ_INFO, 1);
 
- //  AsyncElegantOTA.begin(&server); 
+  AsyncElegantOTA.begin(&server); 
   server.begin();
   
   server.on("/espstyle.css", HTTP_GET, [](AsyncWebServerRequest* request)  
